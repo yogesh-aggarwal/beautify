@@ -1,0 +1,14 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "name": "Facial Cleanser",
+            "tagline": "Citrus Refreshnes senses",
+            "price": 9.99,
+            "stars": 9,
+            "reviews": [],
+            "images": [],
+            "features": []
+        }
+    ]
+}

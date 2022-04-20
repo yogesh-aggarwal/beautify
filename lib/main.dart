@@ -1,6 +1,7 @@
 import 'package:beautify/core/routes.dart';
 import 'package:beautify/core/store.dart';
 import 'package:beautify/core/theme.dart';
+import 'package:beautify/models/product.dart';
 import 'package:beautify/pages/home.dart';
 import 'package:beautify/pages/intro.dart';
 
@@ -12,6 +13,10 @@ void main() {
     store: GStore(),
     child: BeautifyApp(),
   ));
+}
+
+void loadInitialState() {
+  UpdateProducts();
 }
 
 class ScrollBehaviorModified extends ScrollBehavior {
@@ -31,8 +36,19 @@ class ScrollBehaviorModified extends ScrollBehavior {
   }
 }
 
-class BeautifyApp extends StatelessWidget {
+class BeautifyApp extends StatefulWidget {
   const BeautifyApp({Key? key}) : super(key: key);
+
+  @override
+  State<BeautifyApp> createState() => _BeautifyAppState();
+}
+
+class _BeautifyAppState extends State<BeautifyApp> {
+  @override
+  void initState() {
+    super.initState();
+    loadInitialState();
+  }
 
   @override
   Widget build(BuildContext context) {

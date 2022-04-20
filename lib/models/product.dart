@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:beautify/core/store.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:beautify/models/product_review.dart';
 import 'package:beautify/models/product_feature.dart';
+import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Product {
@@ -120,7 +122,16 @@ typedef Products = List<Product>;
 
 class UpdateProducts extends VxMutation<GStore> {
   @override
-  perform() {
-    VxState.store?.products = Product.fromJson("[]");
+  perform() async {
+    List<dynamic> products = json.decode(
+      await rootBundle.loadString('assets/data.json'),
+    )["products"];
+
+    Products finalProducts = [];
+    for (var product in products) {
+      finalProducts.add(Product.fromMap(product));
+    }
+
+    VxState.store?.products = finalProducts;
   }
 }

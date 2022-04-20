@@ -13,6 +13,7 @@ class IntroPage extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return BeautifyBody(
+      vPadding: 0.0,
       hPadding: 4.0,
       child: SizedBox.fromSize(
         size: Size.fromHeight(MediaQuery.of(context).size.height),
