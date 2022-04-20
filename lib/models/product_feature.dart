@@ -52,3 +52,5 @@ class ProductFeature {
   @override
   int get hashCode => name.hashCode ^ icon.hashCode;
 }
+
+typedef ProductFeatures = List<ProductFeature>;

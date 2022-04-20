@@ -10,9 +10,9 @@ class Product {
   final String tagline;
   final double price;
   final int stars;
-  final List<ProductReview> reviews;
+  final ProductReviews reviews;
   final List<String> images;
-  final List<ProductFeature> features;
+  final ProductFeatures features;
   Product({
     required this.id,
     required this.name,
@@ -30,9 +30,9 @@ class Product {
     String? tagline,
     double? price,
     int? stars,
-    List<ProductReview>? reviews,
+    ProductReviews? reviews,
     List<String>? images,
-    List<ProductFeature>? features,
+    ProductFeatures? features,
   }) {
     return Product(
       id: id ?? this.id,
@@ -68,10 +68,10 @@ class Product {
       tagline: map['tagline'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       stars: map['stars']?.toInt() ?? 0,
-      reviews: List<ProductReview>.from(
+      reviews: ProductReviews.from(
           map['reviews']?.map((x) => ProductReview.fromMap(x))),
       images: List<String>.from(map['images']),
-      features: List<ProductFeature>.from(
+      features: ProductFeatures.from(
           map['features']?.map((x) => ProductFeature.fromMap(x))),
     );
   }
@@ -113,3 +113,5 @@ class Product {
         features.hashCode;
   }
 }
+
+typedef Products = List<Product>;

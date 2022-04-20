@@ -62,3 +62,5 @@ class ProductReview {
   @override
   int get hashCode => userID.hashCode ^ star.hashCode ^ content.hashCode;
 }
+
+typedef ProductReviews = List<ProductReview>;
