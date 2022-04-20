@@ -1,11 +1,15 @@
+import 'package:beautify/core/routes.dart';
 import 'package:beautify/widgets/body.dart';
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({Key? key}) : super(key: key);
 
-  navigateToHomePage(BuildContext context) {}
+  navigateToHomePage(BuildContext context) {
+    Navigator.pushNamed(context, Routes.home);
+  }
 
   Widget _buildBody(BuildContext context) {
     return BeautifyBody(
@@ -30,7 +34,13 @@ class IntroPage extends StatelessWidget {
           Icon(
             Icons.arrow_forward_ios_outlined,
             size: 30,
-          ).p(25).box.border(color: Colors.black, width: 2.0).roundedLg.make(),
+          )
+              .p(25)
+              .box
+              .border(color: Colors.black, width: 2.0)
+              .roundedLg
+              .make()
+              .onTap(() => navigateToHomePage(context)),
         ].vStack(
           axisSize: MainAxisSize.max,
           alignment: MainAxisAlignment.center,
