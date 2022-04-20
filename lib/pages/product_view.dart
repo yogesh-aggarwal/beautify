@@ -4,6 +4,17 @@ import 'package:beautify/widgets/bottombar.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+class CartQuantityAction extends StatelessWidget {
+  final String name;
+
+  const CartQuantityAction({Key? key, required this.name}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return name.text.bold.make().px(15).py8().box.roundedFull.make();
+  }
+}
+
 class ProductViewPage extends StatelessWidget {
   final Product product = VxState.store?.products[0] as Product;
 
@@ -63,13 +74,11 @@ class ProductViewPage extends StatelessWidget {
             "\$${product.price}".text.bold.xl4.make(),
             [
               [
-                "-".text.bold.make(),
-                "1".text.bold.make().px20(),
-                "+".text.bold.make(),
+                CartQuantityAction(name: "-"),
+                "1".text.bold.make().px(10).py8(),
+                CartQuantityAction(name: "+"),
               ]
                   .hStack()
-                  .px(20)
-                  .py8()
                   .box
                   .withRounded(value: 20)
                   .border(color: Colors.grey)
