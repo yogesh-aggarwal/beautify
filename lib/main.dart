@@ -1,3 +1,4 @@
+import 'package:beautify/core/theme.dart';
 import 'package:beautify/pages/intro.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,9 @@ class BeautifyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.light,
+      theme: Themes.lightTheme,
+      darkTheme: Themes.darkTheme,
       home: IntroPage(),
     );
   }
