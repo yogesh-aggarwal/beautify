@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                 bottom: BorderSide(color: Colors.black, width: 2.0),
               ),
             ),
-            child: "Face".text.xl3.bold.make().pOnly(bottom: 1),
+            child: "Face".text.size(25).bold.make().pOnly(bottom: 1),
           ).pOnly(right: 50),
           "Body".text.xl.make().pOnly(right: 50),
           "Hair".text.xl.make().pOnly(right: 50),
