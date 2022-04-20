@@ -9,6 +9,23 @@ void main() {
   runApp(BeautifyApp());
 }
 
+class ScrollBehaviorModified extends ScrollBehavior {
+  const ScrollBehaviorModified();
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    switch (getPlatform(context)) {
+      case TargetPlatform.iOS:
+      case TargetPlatform.macOS:
+      case TargetPlatform.android:
+        return BouncingScrollPhysics();
+      case TargetPlatform.fuchsia:
+      case TargetPlatform.linux:
+      case TargetPlatform.windows:
+        return ClampingScrollPhysics();
+    }
+  }
+}
+
 class BeautifyApp extends StatelessWidget {
   const BeautifyApp({Key? key}) : super(key: key);
 
@@ -24,6 +41,12 @@ class BeautifyApp extends StatelessWidget {
         Routes.home: (context) => HomePage(),
       },
       initialRoute: Routes.intro,
+      builder: (context, widget) {
+        return ScrollConfiguration(
+          behavior: ScrollBehaviorModified(),
+          child: widget ?? Container(),
+        );
+      },
     );
   }
 }
