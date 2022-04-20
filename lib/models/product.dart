@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'dart:math';
-import 'package:beautify/core/store.dart';
-import 'package:flutter/foundation.dart';
 
-import 'package:beautify/models/product_review.dart';
-import 'package:beautify/models/product_feature.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'package:beautify/core/store.dart';
+import 'package:beautify/models/product_feature.dart';
+import 'package:beautify/models/product_review.dart';
 
 class Product {
   final String id;
@@ -14,15 +14,17 @@ class Product {
   final String tagline;
   final double price;
   final int stars;
-  final ProductReviews reviews;
+  final double volume;
+  final List<ProductReview> reviews;
   final List<String> images;
-  final ProductFeatures features;
+  final List<ProductFeature> features;
   Product({
     required this.id,
     required this.name,
     required this.tagline,
     required this.price,
     required this.stars,
+    required this.volume,
     required this.reviews,
     required this.images,
     required this.features,
@@ -34,9 +36,10 @@ class Product {
     String? tagline,
     double? price,
     int? stars,
-    ProductReviews? reviews,
+    double? volume,
+    List<ProductReview>? reviews,
     List<String>? images,
-    ProductFeatures? features,
+    List<ProductFeature>? features,
   }) {
     return Product(
       id: id ?? this.id,
@@ -44,6 +47,7 @@ class Product {
       tagline: tagline ?? this.tagline,
       price: price ?? this.price,
       stars: stars ?? this.stars,
+      volume: volume ?? this.volume,
       reviews: reviews ?? this.reviews,
       images: images ?? this.images,
       features: features ?? this.features,
@@ -58,6 +62,7 @@ class Product {
     result.addAll({'tagline': tagline});
     result.addAll({'price': price});
     result.addAll({'stars': stars});
+    result.addAll({'volume': volume});
     result.addAll({'reviews': reviews.map((x) => x.toMap()).toList()});
     result.addAll({'images': images});
     result.addAll({'features': features.map((x) => x.toMap()).toList()});
@@ -72,10 +77,11 @@ class Product {
       tagline: map['tagline'] ?? '',
       price: map['price']?.toDouble() ?? 0.0,
       stars: map['stars']?.toInt() ?? 0,
-      reviews: ProductReviews.from(
+      volume: map['volume']?.toDouble() ?? 0.0,
+      reviews: List<ProductReview>.from(
           map['reviews']?.map((x) => ProductReview.fromMap(x))),
       images: List<String>.from(map['images']),
-      features: ProductFeatures.from(
+      features: List<ProductFeature>.from(
           map['features']?.map((x) => ProductFeature.fromMap(x))),
     );
   }
@@ -87,7 +93,7 @@ class Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, tagline: $tagline, price: $price, stars: $stars, reviews: $reviews, images: $images, features: $features)';
+    return 'Product(id: $id, name: $name, tagline: $tagline, price: $price, stars: $stars, volume: $volume, reviews: $reviews, images: $images, features: $features)';
   }
 
   @override
@@ -100,6 +106,7 @@ class Product {
         other.tagline == tagline &&
         other.price == price &&
         other.stars == stars &&
+        other.volume == volume &&
         listEquals(other.reviews, reviews) &&
         listEquals(other.images, images) &&
         listEquals(other.features, features);
@@ -112,6 +119,7 @@ class Product {
         tagline.hashCode ^
         price.hashCode ^
         stars.hashCode ^
+        volume.hashCode ^
         reviews.hashCode ^
         images.hashCode ^
         features.hashCode;

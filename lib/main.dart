@@ -4,6 +4,7 @@ import 'package:beautify/core/theme.dart';
 import 'package:beautify/models/product.dart';
 import 'package:beautify/pages/home.dart';
 import 'package:beautify/pages/intro.dart';
+import 'package:beautify/pages/product_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -60,8 +61,9 @@ class _BeautifyAppState extends State<BeautifyApp> {
       routes: {
         Routes.intro: (context) => IntroPage(),
         Routes.home: (context) => HomePage(),
+        Routes.product_view: (context) => ProductViewPage(),
       },
-      initialRoute: Routes.home,
+      initialRoute: Routes.product_view,
       builder: (context, widget) {
         return ScrollConfiguration(
           behavior: ScrollBehaviorModified(),
