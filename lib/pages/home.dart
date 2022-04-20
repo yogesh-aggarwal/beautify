@@ -1,6 +1,6 @@
 import 'package:beautify/models/product.dart';
 import 'package:beautify/widgets/appbar.dart';
-import 'package:beautify/widgets/product_card.dart';
+import 'package:beautify/widgets/product_card_large.dart';
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
     return [
       [
         for (var product in VxState.store?.products)
-          ProductCardWiget(product: product),
+          ProductCardLargeWidget(product: product),
       ].hStack().px8().scrollHorizontal().pOnly(top: 20),
       [
         "Popular".text.xl2.bold.make().pOnly(top: 30, bottom: 20),

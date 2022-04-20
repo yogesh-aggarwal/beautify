@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class ProductCardWiget extends StatelessWidget {
+class ProductCardLargeWidget extends StatelessWidget {
   final Product product;
 
-  const ProductCardWiget({Key? key, required this.product}) : super(key: key);
+  const ProductCardLargeWidget({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
