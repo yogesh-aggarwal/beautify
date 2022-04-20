@@ -1,5 +1,7 @@
 import 'package:beautify/models/product.dart';
+import 'package:beautify/models/product_feature.dart';
 import 'package:beautify/widgets/appbar.dart';
+import 'package:beautify/widgets/body.dart';
 import 'package:beautify/widgets/bottombar.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +15,34 @@ class CartQuantityAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return name.text.bold.make().px(15).py8().box.roundedFull.make();
+  }
+}
+
+class ProductFeatureWidget extends StatelessWidget {
+  final ProductFeature feature;
+
+  const ProductFeatureWidget({Key? key, required this.feature})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return [
+      Container(),
+      feature.name.text
+          .size(14)
+          .bold
+          .color(Theme.of(context).textTheme.caption?.color as Color)
+          .make()
+          .pOnly(top: 6),
+    ]
+        .vStack()
+        .p20()
+        .box
+        .width(MediaQuery.of(context).size.width * .25)
+        .height(MediaQuery.of(context).size.width * .25)
+        .white
+        .roundedLg
+        .make();
   }
 }
 
@@ -126,7 +156,26 @@ class ProductViewPage extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return "Body".text.make();
+    return BeautifyBody(
+      hPadding: 0,
+      vPadding: 0,
+      child: [
+        SizedBox.square(
+          dimension: MediaQuery.of(context).size.width,
+          child: Image.network(product.images[0]),
+        ),
+        [
+          for (var feature in product.features)
+            ProductFeatureWidget(feature: feature),
+          ProductFeatureWidget(feature: ProductFeature(icon: "", name: "")),
+        ]
+            .hStack(
+              axisSize: MainAxisSize.max,
+              alignment: MainAxisAlignment.spaceBetween,
+            )
+            .p20(),
+      ].vStack(),
+    );
   }
 
   @override
