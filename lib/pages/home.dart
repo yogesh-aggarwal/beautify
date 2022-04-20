@@ -1,3 +1,4 @@
+import 'package:beautify/models/product.dart';
 import 'package:beautify/widgets/appbar.dart';
 
 import 'package:flutter/material.dart';
@@ -45,7 +46,9 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return "Hello Home".text.make();
+    VxState.watch(context, on: [UpdateProducts]);
+
+    return "Hello Home ${VxState.store?.products.length}".text.make();
   }
 
   @override

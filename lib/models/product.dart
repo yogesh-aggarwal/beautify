@@ -1,8 +1,10 @@
 import 'dart:convert';
+import 'package:beautify/core/store.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:beautify/models/product_review.dart';
 import 'package:beautify/models/product_feature.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class Product {
   final String id;
@@ -115,3 +117,10 @@ class Product {
 }
 
 typedef Products = List<Product>;
+
+class UpdateProducts extends VxMutation<GStore> {
+  @override
+  perform() {
+    VxState.store?.products = Product.fromJson("[]");
+  }
+}
