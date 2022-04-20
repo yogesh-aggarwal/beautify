@@ -36,9 +36,9 @@ class HomePage extends StatelessWidget {
             ),
             child: "Face".text.size(25).bold.make().pOnly(bottom: 1),
           ).pOnly(right: 50),
-          "Body".text.xl.make().pOnly(right: 50),
-          "Hair".text.xl.make().pOnly(right: 50),
-          "Gifts".text.xl.make().pOnly(right: 50),
+          "Body".text.xl.make().pOnly(right: 60),
+          "Hair".text.xl.make().pOnly(right: 60),
+          "Gifts".text.xl.make().pOnly(right: 60),
         ].hStack().pOnly(left: 20).scrollHorizontal().pOnly(top: 10),
       ].vStack(crossAlignment: CrossAxisAlignment.start),
     );
