@@ -61,7 +61,7 @@ class _BeautifyAppState extends State<BeautifyApp> {
         Routes.intro: (context) => IntroPage(),
         Routes.home: (context) => HomePage(),
       },
-      initialRoute: Routes.intro,
+      initialRoute: Routes.home,
       builder: (context, widget) {
         return ScrollConfiguration(
           behavior: ScrollBehaviorModified(),

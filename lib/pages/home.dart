@@ -1,5 +1,6 @@
 import 'package:beautify/models/product.dart';
 import 'package:beautify/widgets/appbar.dart';
+import 'package:beautify/widgets/product_card.dart';
 
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -48,7 +49,15 @@ class HomePage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     VxState.watch(context, on: [UpdateProducts]);
 
-    return "Hello Home ${VxState.store?.products.length}".text.make();
+    return [
+      [
+        for (var product in VxState.store?.products)
+          ProductCardWiget(product: product),
+      ].hStack().px8().scrollHorizontal().pOnly(top: 20),
+      [
+        "Popular".text.xl2.bold.make().pOnly(top: 30, bottom: 20),
+      ].vStack().px20(),
+    ].vStack(crossAlignment: CrossAxisAlignment.start);
   }
 
   @override
