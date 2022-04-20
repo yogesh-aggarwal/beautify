@@ -1,4 +1,5 @@
 import 'package:beautify/models/product.dart';
+import 'package:beautify/widgets/appbar.dart';
 import 'package:beautify/widgets/bottombar.dart';
 
 import 'package:flutter/material.dart';
@@ -19,6 +20,23 @@ class ProductViewPage extends StatelessWidget {
   final Product product = VxState.store?.products[0] as Product;
 
   ProductViewPage({Key? key}) : super(key: key);
+
+  PreferredSize _buildAppBar(BuildContext context) {
+    return BeautifyAppBar(
+      context: context,
+      height: 50,
+      child: [
+        Icon(Icons.arrow_back_ios, size: 28),
+        Icon(Icons.keyboard_command_key_outlined, size: 28),
+      ]
+          .hStack(
+            axisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.spaceBetween,
+          )
+          .pOnly(top: 20)
+          .px20(),
+    );
+  }
 
   PreferredSize _buildBottomAppBar(BuildContext context) {
     return BeautifyBottomAppBar(
@@ -114,6 +132,7 @@ class ProductViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: _buildAppBar(context),
       bottomNavigationBar: _buildBottomAppBar(context),
       body: _buildBody(context),
     );
