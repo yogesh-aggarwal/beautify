@@ -35,7 +35,7 @@ class ProductCardWiget extends StatelessWidget {
             .white
             .roundedLg
             .width(MediaQuery.of(context).size.width * .6)
-            .height(MediaQuery.of(context).size.height * .5)
+            .height(MediaQuery.of(context).size.height * .45)
             .make(),
         Positioned(
           right: 20,

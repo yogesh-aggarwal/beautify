@@ -1,5 +1,6 @@
 import 'package:beautify/models/product.dart';
 import 'package:beautify/widgets/appbar.dart';
+import 'package:beautify/widgets/body.dart';
 import 'package:beautify/widgets/product_card.dart';
 
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class HomePage extends StatelessWidget {
   PreferredSize _buildAppBar(BuildContext context) {
     return BeautifyAppBar(
       context: context,
-      height: 140,
+      height: 150,
       child: [
         [
           SizedBox.square(
@@ -49,15 +50,54 @@ class HomePage extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     VxState.watch(context, on: [UpdateProducts]);
 
-    return [
-      [
-        for (var product in VxState.store?.products)
-          ProductCardWiget(product: product),
-      ].hStack().px8().scrollHorizontal().pOnly(top: 20),
-      [
-        "Popular".text.xl2.bold.make().pOnly(top: 30, bottom: 20),
-      ].vStack().px20(),
-    ].vStack(crossAlignment: CrossAxisAlignment.start);
+    return BeautifyBody(
+      hPadding: 0,
+      child: [
+        [
+          for (Product product in VxState.store?.products)
+            ProductCardWiget(product: product),
+        ].hStack().px8().scrollHorizontal(),
+        [
+          "Popular".text.xl2.bold.make().pOnly(top: 30, bottom: 20),
+          for (Product product in VxState.store?.products)
+            Stack(
+              children: [
+                [
+                  SizedBox.square(
+                    dimension: 70,
+                    child: Image.network(product.images[0], fit: BoxFit.cover),
+                  ).cornerRadius(15).pOnly(right: 16),
+                  [
+                    product.name.text.xl.bold.make(),
+                    product.tagline.text
+                        .size(13)
+                        .bold
+                        .color(
+                            Theme.of(context).textTheme.caption?.color as Color)
+                        .make()
+                        .pOnly(top: 3, bottom: 7),
+                  ].vStack(
+                    axisSize: MainAxisSize.max,
+                    alignment: MainAxisAlignment.center,
+                    crossAlignment: CrossAxisAlignment.start,
+                  ),
+                ].hStack(axisSize: MainAxisSize.max),
+                Positioned(
+                  top: 0,
+                  right: 0,
+                  child: "\$${product.price}"
+                      .text
+                      .xl
+                      .bold
+                      .make()
+                      .centered()
+                      .pOnly(top: 15),
+                )
+              ],
+            ).pOnly(bottom: 30),
+        ].vStack(crossAlignment: CrossAxisAlignment.start).px20(),
+      ].vStack(crossAlignment: CrossAxisAlignment.start),
+    );
   }
 
   @override
