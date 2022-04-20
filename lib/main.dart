@@ -1,9 +1,10 @@
+import 'package:beautify/core/routes.dart';
 import 'package:beautify/core/theme.dart';
 import 'package:beautify/pages/intro.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const BeautifyApp());
+  runApp(BeautifyApp());
 }
 
 class BeautifyApp extends StatelessWidget {
@@ -16,6 +17,10 @@ class BeautifyApp extends StatelessWidget {
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
       home: IntroPage(),
+      routes: {
+        Routes.intro: (context) => IntroPage(),
+      },
+      initialRoute: Routes.intro,
     );
   }
 }
