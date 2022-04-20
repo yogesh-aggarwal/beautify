@@ -1,0 +1,6 @@
+{
+	"explorer.experimental.fileNesting.enabled": true,
+	"explorer.experimental.fileNesting.patterns": {
+		"pubspec.yaml": ".flutter-plugins,.flutter-plugins-dependencies,.metadata,.packages,pubspec.lock,*.iml"
+	}
+}
