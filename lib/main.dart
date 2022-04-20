@@ -1,12 +1,17 @@
 import 'package:beautify/core/routes.dart';
+import 'package:beautify/core/store.dart';
 import 'package:beautify/core/theme.dart';
 import 'package:beautify/pages/home.dart';
 import 'package:beautify/pages/intro.dart';
 
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(BeautifyApp());
+  runApp(VxState(
+    store: GStore(),
+    child: BeautifyApp(),
+  ));
 }
 
 class ScrollBehaviorModified extends ScrollBehavior {
